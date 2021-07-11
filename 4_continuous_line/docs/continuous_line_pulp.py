@@ -22,8 +22,8 @@ K3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20}
 # holes and boundaries
 H = [(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6),
      (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0),
-     (6, 0), (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6),
-     (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6),
+     (6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6),
+     (1, 6), (2, 6), (3, 6), (4, 6), (5, 6),
      (1, 1), (2, 3), (2, 4), (4, 2)]
 
 # keys for decision variables x
@@ -44,14 +44,19 @@ for i in I:
         mdl.addConstraint(pulp.lpSum(x[i, j, k] for k in K) == 1, name=f'1digit_{i}_{j}')
 # digits can't repeat (except 0)
     for k in K2:
-        mdl.addConstraint(pulp.lpSum(x[i, j, k] for i in I2 for j in J2) == 1, name=f'no_digit_repetition_{k}')
+        mdl.addConstraint(pulp.lpSum(x[i, j, k] for i in I2 for j in J2) == 1, name=f'no_digit_repetition_{k}_{i}')
 # holes and boundaries are 0
-for holes in H:
-    mdl.addConstraint((x[i, j, 0] for (i, j) in holes) == 1, name=f'blocks_{H}')
+for (i, j) in H:
+    mdl.addConstraint(x[i, j, 0] == 1, name=f'holes_{(i,j)}')
 # some neighbor has to be a consecutive
 for (i, j, k) in keys2:
-    mdl.addConstraint((x[i, j, k] <= x[i+1, j, k] + x[i-1, j, k] + x[i, j+1, k] + x[i, j-1, k] for (i, j, k) in keys2)
-                      == 1, name=f'blocks_{H}')
+    mdl.addConstraint((x[i, j, k] <= x[i+1, j, k+1] + x[i-1, j, k+1] + x[i, j+1, k+1] + x[i, j-1, k+1]),
+                      name=f'consecutive_neighbor_{i}_{j}_{k}')
+
+for (i, j, k) in keys2:
+    mdl.addConstraint((x[i+1, j, k+1] + x[i-1, j, k+1] + x[i, j+1, k+1] + x[i, j-1, k+1] <= (2 - x[i, j, k])),
+                      name=f'consecutive_neighbor2_{i}_{j}_{k}')
+
 
 # set the objective function
 mdl.setObjective(x[1, 2, 1])  # not really required for this problem
