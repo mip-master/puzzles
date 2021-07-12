@@ -9,16 +9,16 @@ Created by Luiz Suzana (Jul 6, 2021), MipMaster.org.
 import pulp
 
 # region Input Data
-# Number of rows and columns
+# rows, columns, and digits
 I = {1, 2, 3, 4, 5, 6, 7, 8, 9}
-# Even cells
+# even cells
 EC = {(2, 1), (3, 2), (3, 5), (2, 6), (2, 7), (2, 8), (3, 8), (4, 8), (5, 7), (8, 7), (8, 9)}
-# Odd cells
+# odd cells
 OC = {(1, 2), (2, 3), (4, 4), (5, 3), (6, 2), (6, 6), (7, 2), (8, 2), (8, 3), (8, 4), (7, 5), (7, 8), (9, 8)}
-# Given digits
+# given digits
 GD = {(1, 6): 4, (1, 7): 6, (1, 9): 9, (2, 5): 5, (3, 4): 1, (3, 9): 7, (4, 3): 4, (4, 9): 8, (5, 2): 2, (5, 8): 9,
       (6, 1): 1, (6, 7): 3, (7, 1): 9, (7, 6): 8, (8, 5): 6, (9, 1): 8, (9, 3): 5, (9, 4): 7}
-# Bold regions
+# bold regions
 BR = {1: [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3)],
       2: [(1, 4), (1, 5), (1, 6), (2, 4), (2, 5), (2, 6), (3, 4), (3, 5), (3, 6)],
       3: [(1, 7), (1, 8), (1, 9), (2, 7), (2, 8), (2, 9), (3, 7), (3, 8), (3, 9)],
@@ -64,7 +64,7 @@ for region in BR:
 # Some cells must have the given digits
 for i, j in GD:
     value = GD[i, j]
-    mdl.addConstraint(x[i, j, value] == 1, name=f'Cell-{(i,j)}-given-value-{value}')
+    x[i, j, value].lowBound = 1
 
 # Some cells must have an even digit
 for i, j in EC:
@@ -86,6 +86,10 @@ mdl.solve()
 # print(f'x = {x_sol}')
 
 # Retrieve the solution (second option)
-x_sol2 = {(i, j): round(sum(k * x[i, j, k].value() for k in I)) for i in I for j in I}
-print(f'x = {x_sol2}')
+# x_sol = {(i, j): round(sum(k * x[i, j, k].value() for k in I)) for i in I for j in I}
+# print(f'x = {x_sol}')
+
+# Retrieve the solution (third option)
+for i in I:
+    print([int(sum(k * x[i, j, k].value() for k in I)) for j in I])
 # endregion

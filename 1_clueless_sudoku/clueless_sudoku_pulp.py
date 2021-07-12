@@ -57,7 +57,7 @@ mdl.solve()
 
 # retrieve and print out the solution
 x_sol = {key: int(val.value()) for key, val in x.items() if val.value() > 0.5}
-print(f'z = {z.value()}')
-for i, j, k in x_sol:
-    print(f'[{i}, {j}]: {k}')
+print(f'sum = {z.value()}')
+for i in I:
+    print([int(sum(k * x[i, j, k].value() for k in K)) for j in J])
 # endregion
