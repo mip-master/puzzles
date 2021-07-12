@@ -1,18 +1,18 @@
 # Mip Master Fun Puzzles
 This is a collection of fun puzzles proposed to the Mip Master
-community and meant be solved with MIP.
+community and meant be solved using MIP.
 
 Although most of the puzzles proposed here can be solved with logic in traditional ways,
 our goal is to use MIP as a way to exercise our ability of solving challenging
-problems systematically.
+problems, which requires a systematic approach.
 
 We put effort into understanding the problem (which we have to 
-do either way), then modeling the problem and implementing the model. Therefore, we do not try to
-solve the problem, we leave this task for the computer. 
+do any ways), then modeling the problem and implementing the optimization model. 
+We do not try to solve the problem, solving is a task for the computer. 
 
-This mindset is crucial to solve
-industry problems, which we can think as solving puzzles but in a much bigger scale.
-You can certainly solve a 9X9 sudoku without a computer. Think how would you solve 81x81 sudoku!
+This mindset is crucial to effectively solve real-world analytics problems, 
+which is like solving puzzles but in much lager scale.
+After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
 
 ## #3 - Digits Tracking
@@ -25,7 +25,7 @@ in cell _i_ equals the number of times the digit _i_ appears in the list.
 For example, if digit 2 is placed in Cell 1, then digit 1 must be placed in exactly two cells.
 
 _Source: [Puzzle Corner - MIT](https://cs.nyu.edu/~gottlieb/tr/back-issues/)._  
-[Solution](3_digits_tracking)
+Solution: To be posted soon!
 
 ## #2 - Even/Odd Sudoku
 _Jun 2021_  
