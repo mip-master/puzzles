@@ -1,16 +1,18 @@
 # Mip Master Fun Puzzles
 This is a collection of fun puzzles proposed to the Mip Master
-community and meant be solved using MIP.
+community to be solved using MIP.
 
-Although most of the puzzles proposed here can be solved with logic in traditional ways,
-our goal is to use MIP as a way to exercise our ability of solving challenging
-problems, which requires a systematic approach.
+Most of the puzzles proposed here can be solved with logic in traditional ways,
+and we encourage you to do so (consider even sharing with your family and friends!)
+However, our goal is to use MIP as a way to exercise our ability of solving challenging
+real-world problems.
 
-We put effort into understanding the problem (which we have to 
+Solving challenging problems requires systematic approaches.
+When using the MIP approach, we put effort into understanding the problem (which we have to 
 do any ways), then modeling the problem and implementing the optimization model. 
 We do not try to solve the problem, solving is a task for the computer. 
 
-This mindset is crucial to effectively solve real-world analytics problems, 
+This mindset is crucial to effectively solving real-world analytics problems, 
 which is like solving puzzles but in much lager scale.
 After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
