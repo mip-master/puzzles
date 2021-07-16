@@ -1,9 +1,9 @@
 """
-Solution to the Clueless Sudoku.
+Solution to the Digits Tracking puzzle.
 
 This version uses PuLP as a modeling language and CBC as a solver.
 
-Created by Aster Santana (Jun 15, 2021), MipMaster.org.
+Created by Eric Zettermann (July, 2021), MipMaster.org.
 """
 
 import pulp
