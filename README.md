@@ -16,6 +16,16 @@ This mindset is crucial to effectively solving real-world analytics problems,
 which is like solving puzzles but in much lager scale.
 After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
+## #4 - Darts
+_Jul 2021_  
+Draw a continuous line that visits every empty cell of the grid exactly once. 
+The line can start in any empty cell, but it can only move to a horizontal or vertical 
+adjacent cell (diagonal moves are not allowed). 
+The line must not visit any of the colored cells.  
+![Darts](figures/4_darts.png)  
+
+_Source: Mip Master team._  
+Solution: Will be posted soon.
 
 ## #3 - Digits Tracking
 _Jun 2021_  
@@ -27,7 +37,7 @@ in cell _i_ equals the number of times the digit _i_ appears in the list.
 For example, if digit 2 is placed in Cell 1, then digit 1 must be placed in exactly two cells.
 
 _Source: [Puzzle Corner - MIT](https://cs.nyu.edu/~gottlieb/tr/back-issues/)._  
-Solution: To be posted soon!
+[Solution](3_digits_tracking)
 
 ## #2 - Even/Odd Sudoku
 _Jun 2021_  
