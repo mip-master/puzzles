@@ -9,17 +9,20 @@ Created by Eric Zettermann (Jul 11, 2021), MipMaster.org.
 import pulp
 
 # region Input Data
-num_rows = 5
-num_cols = 5
-num_digits = 21
+num_rows = 6
+num_cols = 6
+# holes
+H = [(0, 2), (1, 4), (3, 2), (3, 3),
+     (4, 0), (4, 3), (4, 5), (5, 0), (5, 5)]
+
+num_digits = num_rows*num_cols-len(H)
 # rows
 I = [i for i in range(num_rows)]
 # columns
 J = [j for j in range(num_cols)]
 # digits
 K = [k for k in range(num_digits)]
-# holes
-H = [(0, 0), (1, 2), (1, 3), (3, 1)]
+
 # cells
 C = [(i, j) for i in I for j in J if (i, j) not in H]
 
