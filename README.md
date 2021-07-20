@@ -16,15 +16,26 @@ This mindset is crucial to effectively solving real-world analytics problems,
 which is like solving puzzles but in much lager scale.
 After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
-## #4 - Darts
+## #5 - Continuous Line
 _Jul 2021_  
 Draw a continuous line that visits every empty cell of the grid exactly once. 
 The line can start in any empty cell, but it can only move to a horizontal or vertical 
 adjacent cell (diagonal moves are not allowed). 
 The line must not visit any of the colored cells.  
-![Darts](figures/4_darts.png)  
+![Continues Line](figures/5_continuous_line.png)  
 
 _Source: Mip Master team._  
+Solution: Will be posted soon.
+
+## #4 - Darts
+_Jul 2021_  
+Andrea, Antônio, and Luiz were playing darts. They each threw 6 darts (red marks), 
+and each scored 71 points. Andrea’s first 2 darts scored 22 points. 
+Antônio’s first dart scored 3 points. Who hit the bullseye?
+![Darts](figures/4_darts.png)  
+
+_Source: Adapted from [The Opex Analytics Weekly Puzzle](
+https://www.amazon.com/Opex-Analytics-Weekly-Puzzle-Probability/dp/1731343647) book, Volume II._  
 Solution: Will be posted soon.
 
 ## #3 - Digits Tracking
