@@ -8,45 +8,50 @@ Created by Andrea Rujano (Aug 05 2021), MipMaster.org.
 
 import pulp
 
-# Set of indices
-players = [1, 2, 3]
-shots = [1, 2, 3, 4, 5, 6]
-points = [1, 2, 3, 5, 10, 20, 25, 50]
-region_points = {1: 3, 2: 2, 3: 2, 5: 2, 10: 3, 20: 3, 25: 2, 50: 1}
-grid_player_shots = [(i, j) for i in players for j in shots]
-grid_shots_points = [(j, k) for j in shots for k in points]
-keys = [(i, j, k) for i in players for j in shots for k in points]
+# region Input Data
+# players
+I = [1, 2, 3]  # {1: 'Andrea', 2: 'Antonio', 3: 'Luiz'}
+# shots
+J = [1, 2, 3, 4, 5, 6]
+# scores
+K = [1, 2, 3, 5, 10, 20, 25, 50]
+# number of marks in each scoring regions
+R = {1: 3, 2: 2, 3: 2, 5: 2, 10: 3, 20: 3, 25: 2, 50: 1}
+# keys for decision variables x
+keys = [(i, j, k) for i in I for j in J for k in K]
+# endregion
 
-# define the model
+# region Define the model
 mdl = pulp.LpProblem('darts', sense=pulp.LpMaximize)
 
 # Add variables
 x = pulp.LpVariable.dicts(indexs=keys, cat=pulp.LpBinary, name='x')
 
-# Add constraints
-for i in players:
-    for j in shots:
-        mdl.addConstraint(pulp.lpSum(x[i, j, k] for k in points) == 1, name=f'row_add_1_{i}_{j}')
+# add constraints
+# every shot hits one, and only one, scoring region
+for i in I:
+    for j in J:
+        mdl.addConstraint(pulp.lpSum(x[i, j, k] for k in K) == 1, name=f'shot_{i}_{j}')
+# every player scored 71
+for i in I:
+    mdl.addConstraint(pulp.lpSum(k * x[i, j, k] for j in J for k in K) == 71, name=f'total_score-{i}')
+# number of marks in each scoring region
+for k, marks in R.items():
+    mdl.addConstraint(pulp.lpSum(x[i, j, k] for i in I for j in J) == marks, name=f'score_marks_{k}')
+# Andrea's first two shots scored 22 points
+mdl.addConstraint(pulp.lpSum(k * x[1, j, k] for j in [1, 2] for k in K) == 22, name=f'andrea_22')
+# Antonio's first shot scored 3 points
+mdl.addConstraint(x[2, 1, 3] == 1, name=f'antonio_3')
 
-for k, total in region_points.items():
-    mdl.addConstraint(pulp.lpSum(x[i, j, k] for i, j in grid_player_shots) == total,
-                      name=f'Cell-{(i, j)}-given-value-{k}')
+# set the objective function
+mdl.setObjective(pulp.lpSum(x))  # dummy objective because this is just a feasibility problem
+# endregion
 
-for i in players:
-    mdl.addConstraint(pulp.lpSum(k * x[i, j, k] for j, k in grid_shots_points) == 71, name=f'Cell-given-value-{i}')
-
-mdl.addConstraint(x[1, 1, 20] == 1, name=f'first player_1')
-mdl.addConstraint(x[1, 2, 2] == 1, name=f'first player_2')
-# second player hits
-mdl.addConstraint(x[2, 1, 3] == 1, name=f'second player')
-
-# Set objective function
-mdl.setObjective(x[3, 1, 1])
-
-# Solve
+# region Optimize and retrieve the solution
 mdl.solve()
 
-# Retrieve the solution
-x_sol = {key: val.value() for key, val in x.items() if val.value() > 0.5}
-print(f'x={x_sol}')
-
+# retrieve and print out the solution
+print('Scores:')
+for i in I:
+    print(f'player {i}:', [sum(k*x[i, j, k].value() for k in K) for j in J])
+# endregion

@@ -1,4 +1,4 @@
-# Darts Puzzle
+# Darts
 
 This directory contains implementation(s) of MIP models that solve(s) the puzzle.
 

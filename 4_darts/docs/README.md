@@ -20,6 +20,6 @@ Antonio
 3, 2, 10, 5, 50, 1
 
 Luiz  
-3, 10, 5, 25, 10, 20
+1, 10, 5, 25, 10, 20
 
 Back to the [main page](../../README.md).
