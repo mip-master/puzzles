@@ -36,7 +36,7 @@ Antônio’s first dart scored 3 points. Who hit the bullseye?
 
 _Source: Adapted from [The Opex Analytics Weekly Puzzle](
 https://www.amazon.com/Opex-Analytics-Weekly-Puzzle-Probability/dp/1731343647) book, Volume II._  
-Solution: Will be posted soon.
+[Solution](4_darts)
 
 ## #3 - Digits Tracking
 _Jun 2021_  
