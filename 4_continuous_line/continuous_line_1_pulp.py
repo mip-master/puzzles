@@ -12,8 +12,7 @@ import pulp
 num_rows = 6
 num_cols = 6
 # holes
-H = [(0, 2), (1, 4), (3, 2), (3, 3),
-     (4, 0), (4, 3), (4, 5), (5, 0), (5, 5)]
+H = [(0, 2), (1, 4), (3, 2), (3, 3), (4, 0), (4, 3), (4, 5), (5, 0), (5, 5)]
 
 num_digits = num_rows*num_cols-len(H)
 # rows
@@ -63,4 +62,3 @@ x_sol = {(i, j): int(sum(k * x[i, j, k].value() for k in K)) for i, j in C}
 print(f'x = {x_sol}')
 # endregion
 
-# mdl.writeLP('continuous_lines.lp')
