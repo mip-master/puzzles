@@ -16,6 +16,15 @@ This mindset is crucial to effectively solving real-world analytics problems,
 which is like solving puzzles but in much lager scale.
 After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
+## #6 - Crucipixel Game
+_Aug 2021_  
+The Crucipixel Game, also known as Nanogram, Paint by Numbers or Griddlers, objectives to dark strings of cells whose length is prescribed in columns and rows. In the exemple bellow, the seventh column must have two strings of cells, the first with the length equal to 3 and the second a length of 4.
+
+![Crucipixel Game](figures/6_crucipixel_game.png)
+
+_Source_: Conforti, M., Cornuéjols, G., & Zambelli, G. (2001). Integer Programming. In Springer (Vol. 271). Springer International Publishing Switzerland. 
+Solution: Comming soon
+
 ## #5 - Continuous Line
 _Jul 2021_  
 Draw a continuous line that visits every empty cell of the grid exactly once. 
