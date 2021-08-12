@@ -16,10 +16,11 @@ This mindset is crucial to effectively solving real-world analytics problems,
 which is like solving puzzles but in much lager scale.
 After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
-## #6 - Nanogram
+## #6 - Nonogram
 _Aug 2021_  
-This is the *Nanogram Game*, also known as *Crucipixel*, *Paint by Numbers* or *Griddlers*.
-The objective is to fill cells to form horizontal and vertical strings. 
+This is the [Nonogram Puzzle](https://en.wikipedia.org/wiki/Nonogram) 
+(also known as *Crucipixel*, *Paint by Numbers*, *Griddlers*, and other names).
+The objective is to color cells to form horizontal and vertical strings. 
 The length of each horizontal string is prescribed by the number on the left.
 The length of each vertical string is prescribed by the number on the top.
 For example, the second row must have two strings of filled cells, the first with length 3 
