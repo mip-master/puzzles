@@ -3,13 +3,13 @@ This is a collection of fun puzzles proposed to the Mip Master
 community to be solved using MIP.
 
 Most of the puzzles proposed here can be solved with logic in traditional ways,
-and we encourage you to do so (consider even sharing with your family and friends!)
+and we encourage you to do so--consider even sharing with your family and friends!
 However, our goal is to use MIP as a way to exercise our ability of solving challenging
 real-world problems.
 
 Solving challenging problems requires systematic approaches.
 When using the MIP approach, we put effort into understanding the problem (which we have to 
-do any ways), then modeling the problem and implementing the optimization model. 
+do any ways), then modeling the problem, and implementing the optimization model. 
 We do not try to solve the problem, solving is a task for the computer. 
 
 This mindset is crucial to effectively solving real-world analytics problems, 
@@ -17,51 +17,51 @@ which is like solving puzzles but in much lager scale.
 After all, you can certainly solve a 9X9-sudoku without a computer, but how about solving a 81x81-sudoku?
 
 ## #5 - Continuous Line
-_Jul 2021_  
+*Jul 2021*  
 Draw a continuous line that visits every empty cell of the grid exactly once. 
 The line can start in any empty cell, but it can only move to a horizontal or vertical 
 adjacent cell (diagonal moves are not allowed). 
 The line must not visit any of the colored cells.  
 ![Continues Line](figures/5_continuous_line.png)  
 
-_Source: Mip Master team._  
-Solution: Will be posted soon.
+*Source: Mip Master team.*  
+[Solution](5_continuous_line)
 
 ## #4 - Darts
-_Jul 2021_  
+*Jul 2021*  
 Andrea, Antônio, and Luiz were playing darts. They each threw 6 darts (red marks), 
 and each scored 71 points. Andrea’s first 2 darts scored 22 points. 
 Antônio’s first dart scored 3 points. Who hit the bullseye?
 ![Darts](figures/4_darts.png)  
 
-_Source: Adapted from [The Opex Analytics Weekly Puzzle](
-https://www.amazon.com/Opex-Analytics-Weekly-Puzzle-Probability/dp/1731343647) book, Volume II._  
+*Source: Adapted from [The Opex Analytics Weekly Puzzle](
+https://www.amazon.com/Opex-Analytics-Weekly-Puzzle-Probability/dp/1731343647) book, Volume II.*  
 [Solution](4_darts)
 
 ## #3 - Digits Tracking
-_Jun 2021_  
+*Jun 2021*  
 Consider the list of cells in the figure below.  
 ![Digits Tracking](figures/3_digits_tracking.png)  
 Each cell has a label which is a digit from 0 to 9. 
 The goal is to place a digit, from 0 to 9, in each of the 10 cells in a way that the digit placed 
-in cell _i_ equals the number of times the digit _i_ appears in the list.
+in cell `i` equals the number of times the digit `i` appears in the list.
 For example, if digit 2 is placed in Cell 1, then digit 1 must be placed in exactly two cells.
 
-_Source: [Puzzle Corner - MIT](https://cs.nyu.edu/~gottlieb/tr/back-issues/)._  
+*Source: [Puzzle Corner - MIT](https://cs.nyu.edu/~gottlieb/tr/back-issues/).*  
 [Solution](3_digits_tracking)
 
 ## #2 - Even/Odd Sudoku
-_Jun 2021_  
+*Jun 2021*  
 Same rules of the standard sudoku, i.e., the digits 1 through 9 into the grid so that no digit repeats 
 in any row, column, or bold region. In addition, cells with a square must contain an even digit 
 and cells with a circle must contain an odd digit.  
 ![Digits Tracking](figures/2_even_odd_sudoku.png)
 
-_Source: [The Art of Puzzles](https://www.gmpuzzles.com/blog/2021/03/even-odd-sudoku-by-swaroop-guggilam/)._  
+*Source: [The Art of Puzzles](https://www.gmpuzzles.com/blog/2021/03/even-odd-sudoku-by-swaroop-guggilam/).*  
 [Solution](2_even_odd_sudoku)
 
 ## #1 - Clueless Sudoku
-_May 2021_
+*May 2021*
 Same rules of the standard sudoku, i.e., fill the digits 1 through 6 into the grid so that no digit repeats 
 in any row, column, or bold region. In addition, the sum of the digits in every bold region is the same.
 
@@ -74,6 +74,6 @@ defined here:
 9: [(5, 1), (5, 2), (4, 2)], 10: [(4, 4), (5, 4)], 11: [(5, 5), (5, 6), (4, 6)],
 12: [(6, 1), (6, 2)], 13: [(5, 3), (6, 3)], 14: [(6, 4), (6, 5), (6, 6)]`
 
-_Source: Adapted from the book
-[The Opex Analytics Weekly Puzzle](https://www.amazon.com/Opex-Analytics-Weekly-Puzzle-Probability/dp/1731343647)._  
+*Source: Adapted from the book
+[The Opex Analytics Weekly Puzzle](https://www.amazon.com/Opex-Analytics-Weekly-Puzzle-Probability/dp/1731343647).*  
 [Solution](1_clueless_sudoku)
