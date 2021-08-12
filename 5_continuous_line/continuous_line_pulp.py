@@ -36,13 +36,13 @@ mdl = pulp.LpProblem('continuous_line', sense=pulp.LpMaximize)
 x = pulp.LpVariable.dicts(indexs=keys, cat=pulp.LpBinary, name='x')
 
 # add constraints
-# exactly one digit per cell
+# exactly one digit gets assigned to every cell
 for i, j in C:
     mdl.addConstraint(pulp.lpSum(x[i, j, k] for k in K) == 1, name=f'single_digit_{i}_{j}')
-# all digits must be filled in
+# every digit must be used exactly once
 for k in K:
     mdl.addConstraint(pulp.lpSum(x[i, j, k] for i, j in C) == 1, name=f'all_digits{k}')
-# can only move to a neighboring cell
+# every digit must have its consecutive in an adjacent cell
 for i, j in C:
     for k in K[:num_digits-1]:  # skip the last digits
         mdl.addConstraint((x[i, j, k] <=
