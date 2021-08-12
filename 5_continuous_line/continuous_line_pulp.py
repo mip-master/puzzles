@@ -26,14 +26,14 @@ K = [k for k in range(num_digits)]
 C = [(i, j) for i in I for j in J if (i, j) not in H]
 
 # keys for decision variables x
-keys = [(i, j, k) for i, j in C for k in K]
+x_keys = [(i, j, k) for i, j in C for k in K]
 # endregion
 
 # region Define the model
 mdl = pulp.LpProblem('continuous_line', sense=pulp.LpMaximize)
 
 # add variables
-x = pulp.LpVariable.dicts(indexs=keys, cat=pulp.LpBinary, name='x')
+x = pulp.LpVariable.dicts(indexs=x_keys, cat=pulp.LpBinary, name='x')
 
 # add constraints
 # exactly one digit gets assigned to every cell
@@ -51,14 +51,15 @@ for i, j in C:
                           name=f'neighboring_{i}_{j}_{k}')
 
 # set the objective function
-mdl.setObjective(x[0, 1, 0])  # not really required for this problem
+mdl.setObjective(pulp.lpSum(x[key] for key in x_keys))  # not really required for this problem
 # endregion
 
 # region Optimize and retrieve the solution
 mdl.solve()
 
 # retrieve and print out the solution
-x_sol = {(i, j): int(sum(k * x[i, j, k].value() for k in K)) for i, j in C}
-print(f'x = {x_sol}')
+for i in I:
+    row = [int(sum(k * x[i, j, k].value() for k in K)) if (i, j) in C else 'X' for j in J]
+    print(row)
 # endregion
 
