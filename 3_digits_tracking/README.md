@@ -1,4 +1,4 @@
-# Clueless Sudoku - Solution
+# Digits Tracking - Solution
 
 This directory contains implementations of models that solves the puzzle. 
 The formulation is in the [docs](docs) directory.
