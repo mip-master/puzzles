@@ -26,7 +26,7 @@ The length of each vertical string is prescribed by the number on the top.
 For example, the second row must have two strings of filled cells, the first with length 3 
 and the second one with length 1.
 
-![Crucipixel Game](figures/6_crucipixel_game.png)
+![Nonogram](figures/6_nonogram.png)
 
 _Source_: Book [Integer Programming](https://link.springer.com/book/10.1007/978-3-319-11008-0), by
 Michele Conforti, Gérard Cornuéjols, and Giacomo Zambelli.  
