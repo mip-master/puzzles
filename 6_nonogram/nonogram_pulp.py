@@ -49,6 +49,8 @@ z_keys = [(i, j, k) for i in I for j in J for k in CS[j]]
 mdl = pulp.LpProblem('nonogram')
 
 # add variables
+# although there is a more compact way to set the variable in pulp, we use the for-loop here
+# to show the similarity of using different mip modeling python framework (e.g, pulp and scip).
 x, y, z = dict(), dict(), dict()
 for key in x_keys:
     x[key] = pulp.LpVariable(cat=pulp.LpBinary, name=f'x_{key}')
