@@ -24,13 +24,14 @@ The objective is to paint cells to form horizontal and vertical strings.
 The length of each horizontal string is prescribed by the number on the left.
 The length of each vertical string is prescribed by the number on the top.
 For example, the second row must have two strings of filled cells, the first with length 3 
-and the second one with length 1.
+and the second one with length 1 (the order must be preserved). 
+Finally, there must be at least one empty cell between any two horizontal/vertical consecutive strings. 
 
 ![Nonogram](figures/6_nonogram.png)
 
 _Source_: Book [Integer Programming](https://link.springer.com/book/10.1007/978-3-319-11008-0), by
 Michele Conforti, Gérard Cornuéjols, and Giacomo Zambelli.  
-Solution: Coming soon.
+[Solution](6_nonogram)
 
 ## #5 - Continuous Line
 *Jul 2021*  
