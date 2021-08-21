@@ -22,5 +22,6 @@ Here is one possible solution (there are multiple solutions to this puzzle).
 [0, 1, 0, 1, 1, 1, 1, 0, 1, 1]
 [0, 0, 0, 0, 0, 1, 1, 0, 1, 1]
 ```
+![Nonogram solution](nonogram_solution.png)
 
 Back to the [main page](../../README.md).
