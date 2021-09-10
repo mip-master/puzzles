@@ -1,5 +1,5 @@
 """
-Solution to the Continuous Line.
+Solution to the Zebra
 
 This version uses PuLP as a modeling language and CBC as a solver.
 
