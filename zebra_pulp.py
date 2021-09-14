@@ -5,9 +5,7 @@ This version uses PuLP as a modeling language and CBC as a solver.
 """
 
 import pulp
-import time
 
-star_time = time.time()
 # region Input Data
 K = [1, 2, 3, 4, 5]  # house position
 I = ['country', 'house_color', 'pet', 'beverage', 'cigarette_brand']
@@ -24,9 +22,6 @@ x_indexes = [(k, i, j) for k in K for i in I for j in J[i]]
 x = pulp.LpVariable.dicts(indexs=x_indexes, cat=pulp.LpBinary, name='x')
 
 # add constraints
-print(len(x_indexes), x_indexes)
-for r in x_indexes:
-    print(r)
 
 for i in I:
     for j in J[i]:
@@ -96,8 +91,7 @@ mdl.setObjective(sum(x[k, i, j] for k, i, j in x_indexes))
 #
 # # region Optimize and retrieve the solution
 mdl.solve()
-end_time = time.time()
-print('execution time', end_time-star_time)
+
 #
 
 # # retrieve and print out the solution
