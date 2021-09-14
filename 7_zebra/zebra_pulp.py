@@ -73,9 +73,8 @@ mdl.addConstraint(pulp.lpSum(i * x.get((i, 2, 3), 0) for i in I) == pulp.lpSum(i
                   name=f'R5')
 
 # R6
-mdl.addConstraint(
-    pulp.lpSum(i * x.get((i, 1, 2), 0) for i in I) == pulp.lpSum((i + 1) * x.get((i, 1, 5), 0) for i in I),
-    name=f'R6')
+for i in I[1:]:
+    mdl.addConstraint(x.get((i, 1, 2), 0) <= x.get((i - 1, 1, 5), 1), name=f'R6_{i}')
 
 # R7
 mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 1), 0) for i in I) == pulp.lpSum(i * x.get((i, 4, 2), 0) for i in I),
@@ -86,32 +85,12 @@ mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 2), 0) for i in I) == pulp.lpSum(i
                   name=f'R8')
 
 # R11
-mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 3), 0) for i in I) - pulp.lpSum(i * x.get((i, 4, 3), 0) for i in I) <= 2,
-                  name=f'R11_up')
-mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 3), 0) for i in I) - pulp.lpSum(i * x.get((i, 4, 3), 0) for i in I) >= -2,
-                  name=f'R11_down')
-
 for i in I:
-    mdl.addConstraint((1 - x.get((i, 5, 3), 0)) >= x.get((i, 4, 3), 0),
-                      name=f'R11_difference1_{i}')
-
-for i in I:
-    mdl.addConstraint((1 - x.get((i, 4, 3), 0)) >= x.get((i, 5, 3), 0),
-                      name=f'R11_difference2_{i}')
+    mdl.addConstraint(x.get((i, 5, 3), 0) <= x.get((i - 1, 4, 3), 0) + x.get((i + 1, 4, 3), 0), name=f'R11_{i}')
 
 # R12
-mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 2), 0) for i in I) - pulp.lpSum(i * x.get((i, 4, 4), 0) for i in I) <= 2,
-                  name=f'R12_up')
-mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 2), 0) for i in I) - pulp.lpSum(i * x.get((i, 4, 4), 0) for i in I) >= -2,
-                  name=f'R12_down')
-
 for i in I:
-    mdl.addConstraint((1 - x.get((i, 5, 2), 0)) >= x.get((i, 4, 4), 0),
-                      name=f'R12_difference1_{i}')
-
-for i in I:
-    mdl.addConstraint((1 - x.get((i, 4, 4), 0)) >= x.get((i, 5, 2), 0),
-                      name=f'R12_difference2_{i}')
+    mdl.addConstraint(x.get((i, 4, 4), 0) <= x.get((i - 1, 5, 2), 0) + x.get((i + 1, 5, 2), 0), name=f'R12_{i}')
 
 # R13
 mdl.addConstraint(pulp.lpSum(i * x.get((i, 5, 4), 0) for i in I) == pulp.lpSum(i * x.get((i, 3, 4), 0) for i in I),
