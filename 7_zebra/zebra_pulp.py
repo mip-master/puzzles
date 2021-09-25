@@ -12,9 +12,9 @@ import pulp
 # House position
 I = [1, 2, 3, 4, 5]
 # Characteristics
-J = ['country', 'color', 'pet', 'beverage', 'hobby']
+J = ['flag', 'color', 'pet', 'beverage', 'hobby']
 # options
-K = {'country': ['Brazil', 'Venezuela', 'India', 'Tunisia', 'Mexico'],
+K = {'flag': ['Brazil', 'Venezuela', 'India', 'Tunisia', 'Mexico'],
      'color': ['red', 'green', 'ivory', 'yellow', 'blue'],
      'pet': ['dog', 'cat', 'turtle', 'hamster', 'rabbit'],
      'beverage': ['coffee', 'tea', 'milk', 'orange juice', 'water'],
@@ -42,18 +42,18 @@ for j in J:
         mdl.addConstraint(pulp.lpSum(x[i, j, k] for i in I) == 1, name=f'once_in_column_{j}_{k}')
 
 # R2
-mdl.addConstraint(pulp.lpSum(i * x[i, 'country', 'Brazil'] for i in I) == pulp.lpSum(i * x[i, 'color', 'red']
+mdl.addConstraint(pulp.lpSum(i * x[i, 'flag', 'Brazil'] for i in I) == pulp.lpSum(i * x[i, 'color', 'red']
                                                                                      for i in I), name=f'R2')
 
 # R3
-mdl.addConstraint(pulp.lpSum(i * x[i, 'country', 'Venezuela'] for i in I) == pulp.lpSum(i * x[i, 'pet', 'dog']
+mdl.addConstraint(pulp.lpSum(i * x[i, 'flag', 'Venezuela'] for i in I) == pulp.lpSum(i * x[i, 'pet', 'dog']
                                                                                         for i in I), name=f'R3')
 
 # R4
 mdl.addConstraint(pulp.lpSum(i * x[i, 'color', 'green'] for i in I) == pulp.lpSum(i * x[i, 'beverage', 'coffee']
                                                                                   for i in I), name=f'R4')
 # R5
-mdl.addConstraint(pulp.lpSum(i * x[i, 'country', 'India'] for i in I) == pulp.lpSum(i * x[i, 'beverage', 'tea']
+mdl.addConstraint(pulp.lpSum(i * x[i, 'flag', 'India'] for i in I) == pulp.lpSum(i * x[i, 'beverage', 'tea']
                                                                                     for i in I), name=f'R5')
 
 # R6
@@ -71,7 +71,7 @@ mdl.addConstraint(pulp.lpSum(i * x[i, 'color', 'yellow'] for i in I) == pulp.lpS
 mdl.addConstraint(x[3, 'beverage', 'milk'] == 1, name=f'R9')
 
 # R10
-mdl.addConstraint(x[1, 'country', 'Mexico'] == 1, name=f'R10')
+mdl.addConstraint(x[1, 'flag', 'Mexico'] == 1, name=f'R10')
 
 # R11
 for i in I[1:3]:
@@ -96,17 +96,17 @@ mdl.addConstraint(pulp.lpSum(i * x[i, 'beverage', 'orange juice'] for i in I) ==
                                                                                             for i in I), name=f'R13')
 
 # R14
-mdl.addConstraint(pulp.lpSum(i * x[i, 'country', 'Tunisia'] for i in I) == pulp.lpSum(i * x[i, 'hobby', 'fishing']
+mdl.addConstraint(pulp.lpSum(i * x[i, 'flag', 'Tunisia'] for i in I) == pulp.lpSum(i * x[i, 'hobby', 'fishing']
                                                                                       for i in I), name=f'R14')
 
 # R15
 for i in I[1:3]:
-    mdl.addConstraint(x[i, 'country', 'Mexico'] <= x[i - 1, 'color', 'blue'] + x[i + 1, 'color', 'blue'],
+    mdl.addConstraint(x[i, 'flag', 'Mexico'] <= x[i - 1, 'color', 'blue'] + x[i + 1, 'color', 'blue'],
                       name=f'R15_{i}')
 
-mdl.addConstraint(x[1, 'country', 'Mexico'] <= x[2, 'color', 'blue'], name=f'R15_1')
+mdl.addConstraint(x[1, 'flag', 'Mexico'] <= x[2, 'color', 'blue'], name=f'R15_1')
 
-mdl.addConstraint(x[5, 'country', 'Mexico'] <= x[4, 'color', 'blue'], name=f'R15_5')
+mdl.addConstraint(x[5, 'flag', 'Mexico'] <= x[4, 'color', 'blue'], name=f'R15_5')
 
 # set the objective function
 mdl.setObjective(pulp.lpSum(x[key] for key in x_keys))  # not really required for this problem
