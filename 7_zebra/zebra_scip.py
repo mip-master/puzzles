@@ -33,81 +33,57 @@ for key in x_keys:
     x[key] = mdl.addVar(vtype='B', name=f'x_{key}')
 
 # add constraints
-# exactly one digit gets assigned to every cell
+# exactly one option for each house-attribute pair
 for i in I:
     for j in J:
-        mdl.addCons(quicksum(x[i, j, k] for k in K[j]) == 1, name=f'single_digit_{i}_{j}')
-
-# every digit must appear only once in a column
+        mdl.addCons(quicksum(x[i, j, k] for k in K[j]) == 1, name=f'single_option_{i}_{j}')
+# exactly one house for each attribute-option pair
 for j in J:
     for k in K[j]:
-        mdl.addCons(quicksum(x[i, j, k] for i in I) == 1, name=f'once_in_column_{j}_{k}')
-
+        mdl.addCons(quicksum(x[i, j, k] for i in I) == 1, name=f'single_house_{j}_{k}')
 # R2
-mdl.addCons(quicksum(i * x[i, 'flag', 'Brazil'] for i in I) == quicksum(i * x[i, 'color', 'red']
-                                                                        for i in I), name=f'R2')
-
+for i in I:
+    mdl.addCons(x[i, 'flag', 'Brazil'] == x[i, 'color', 'red'], name=f'R2_{i}')
 # R3
-mdl.addCons(quicksum(i * x[i, 'flag', 'Venezuela'] for i in I) == quicksum(i * x[i, 'pet', 'dog']
-                                                                           for i in I), name=f'R3')
-
+for i in I:
+    mdl.addCons(x[i, 'flag', 'Venezuela'] == x[i, 'pet', 'dog'], name=f'R3_{i}')
 # R4
-mdl.addCons(quicksum(i * x[i, 'color', 'green'] for i in I) == quicksum(i * x[i, 'beverage', 'coffee']
-                                                                        for i in I), name=f'R4')
+for i in I:
+    mdl.addCons(x[i, 'color', 'green'] == x[i, 'beverage', 'coffee'], name=f'R4_{i}')
 # R5
-mdl.addCons(quicksum(i * x[i, 'flag', 'India'] for i in I) == quicksum(i * x[i, 'beverage', 'tea']
-                                                                       for i in I), name=f'R5')
-
+for i in I:
+    mdl.addCons(x[i, 'flag', 'India'] == x[i, 'beverage', 'tea'], name=f'R5_{i}')
 # R6
-for i in I[1:5]:
-    mdl.addCons(x[i, 'color', 'green'] <= x[i - 1, 'color', 'ivory'], name=f'R6_{i}')
-mdl.addCons(x[1, 'color', 'green'] == 0, name=f'R6_{1}')
+for i in I:  # using the get function because x[i-1, '*', '*'] is not defined for i=1
+    mdl.addCons(x[i, 'color', 'green'] <= x.get((i-1, 'color', 'ivory'), 0), name=f'R6_{i}')
 # R7
-mdl.addCons(quicksum(i * x[i, 'pet', 'cat'] for i in I) == quicksum(i * x[i, 'hobby', 'chess'] for i in I), name=f'R7')
-
+for i in I:
+    mdl.addCons(x[i, 'pet', 'cat'] == x[i, 'hobby', 'chess'], name=f'R7_{i}')
 # R8
-mdl.addCons(quicksum(i * x[i, 'color', 'yellow'] for i in I) == quicksum(i * x[i, 'hobby', 'volleyball']
-                                                                         for i in I), name=f'R8')
+for i in I:
+    mdl.addCons(x[i, 'color', 'yellow'] == x[i, 'hobby', 'volleyball'], name=f'R8_{i}')
 # R9
-mdl.addCons(x[3, 'beverage', 'milk'] == 1, name=f'R9')
-
+mdl.addCons(x[3, 'beverage', 'milk'] == 1, name='R9')
 # R10
-mdl.addCons(x[1, 'flag', 'Mexico'] == 1, name=f'R10')
-
+mdl.addCons(x[1, 'flag', 'Mexico'] == 1, name='R10')
 # R11
-for i in I[1:4]:
-    mdl.addCons(x[i, 'hobby', 'sudoku'] <= x[i - 1, 'pet', 'turtle'] + x[i + 1, 'pet', 'turtle'],
+for i in I:
+    mdl.addCons(x[i, 'hobby', 'sudoku'] <= x.get((i-1, 'pet', 'turtle'), 0) + x.get((i+1, 'pet', 'turtle'), 0),
                 name=f'R11_{i}')
-
-mdl.addCons(x[1, 'hobby', 'sudoku'] <= x[2, 'pet', 'turtle'], name=f'R11_1')
-
-mdl.addCons(x[5, 'hobby', 'sudoku'] <= x[4, 'pet', 'turtle'], name=f'R11_5')
-
 # R12
-for i in I[1:4]:
-    mdl.addCons(x[i, 'hobby', 'volleyball'] <= x[i - 1, 'pet', 'hamster'] + x[i + 1, 'pet', 'hamster'],
+for i in I:
+    mdl.addCons(x[i, 'hobby', 'volleyball'] <= x.get((i-1, 'pet', 'hamster'), 0) + x.get((i+1, 'pet', 'hamster'), 0),
                 name=f'R12_{i}')
-
-mdl.addCons(x[1, 'hobby', 'volleyball'] <= x[2, 'pet', 'hamster'], name=f'R12_1')
-
-mdl.addCons(x[5, 'hobby', 'volleyball'] <= x[4, 'pet', 'hamster'], name=f'R12_5')
-
 # R13
-mdl.addCons(quicksum(i * x[i, 'beverage', 'orange juice'] for i in I) == quicksum(i * x[i, 'hobby', 'karaoke']
-                                                                                  for i in I), name=f'R13')
-
+for i in I:
+    mdl.addCons(x[i, 'beverage', 'orange juice'] == x[i, 'hobby', 'karaoke'], name=f'R13_{i}')
 # R14
-mdl.addCons(quicksum(i * x[i, 'flag', 'Tunisia'] for i in I) == quicksum(i * x[i, 'hobby', 'fishing']
-                                                                         for i in I), name=f'R14')
-
+for i in I:
+    mdl.addCons(x[i, 'flag', 'Tunisia'] == x[i, 'hobby', 'fishing'], name=f'R14_{i}')
 # R15
-for i in I[1:4]:
-    mdl.addCons(x[i, 'flag', 'Mexico'] <= x[i - 1, 'color', 'blue'] + x[i + 1, 'color', 'blue'],
+for i in I:
+    mdl.addCons(x[i, 'flag', 'Mexico'] <= x.get((i-1, 'color', 'blue'), 0) + x.get((i+1, 'color', 'blue'), 0),
                 name=f'R15_{i}')
-
-mdl.addCons(x[1, 'flag', 'Mexico'] <= x[2, 'color', 'blue'], name=f'R15_1')
-
-mdl.addCons(x[5, 'flag', 'Mexico'] <= x[4, 'color', 'blue'], name=f'R15_5')
 
 # set the objective function
 mdl.setObjective(quicksum(x[key] for key in x_keys), sense='maximize')  # not really required for this problem
