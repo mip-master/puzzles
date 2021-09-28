@@ -57,7 +57,7 @@ mdl.addConstraint(pulp.lpSum(i * x[i, 'flag', 'India'] for i in I) == pulp.lpSum
                                                                                     for i in I), name=f'R5')
 
 # R6
-for i in I[1:4]:
+for i in I[1:5]:
     mdl.addConstraint(x[i, 'color', 'green'] <= x[i - 1, 'color', 'ivory'], name=f'R6_{i}')
 mdl.addConstraint(x[1, 'color', 'green'] == 0, name=f'R6_{1}')
 # R7
@@ -74,7 +74,7 @@ mdl.addConstraint(x[3, 'beverage', 'milk'] == 1, name=f'R9')
 mdl.addConstraint(x[1, 'flag', 'Mexico'] == 1, name=f'R10')
 
 # R11
-for i in I[1:3]:
+for i in I[1:4]:
     mdl.addConstraint(x[i, 'hobby', 'sudoku'] <= x[i - 1, 'pet', 'turtle'] + x[i + 1, 'pet', 'turtle'],
                       name=f'R11_{i}')
 
@@ -83,7 +83,7 @@ mdl.addConstraint(x[1, 'hobby', 'sudoku'] <= x[2, 'pet', 'turtle'], name=f'R11_1
 mdl.addConstraint(x[5, 'hobby', 'sudoku'] <= x[4, 'pet', 'turtle'], name=f'R11_5')
 
 # R12
-for i in I[1:3]:
+for i in I[1:4]:
     mdl.addConstraint(x[i, 'hobby', 'volleyball'] <= x[i - 1, 'pet', 'hamster'] + x[i + 1, 'pet', 'hamster'],
                       name=f'R12_{i}')
 
@@ -100,7 +100,7 @@ mdl.addConstraint(pulp.lpSum(i * x[i, 'flag', 'Tunisia'] for i in I) == pulp.lpS
                                                                                       for i in I), name=f'R14')
 
 # R15
-for i in I[1:3]:
+for i in I[1:4]:
     mdl.addConstraint(x[i, 'flag', 'Mexico'] <= x[i - 1, 'color', 'blue'] + x[i + 1, 'color', 'blue'],
                       name=f'R15_{i}')
 
