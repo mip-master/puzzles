@@ -53,7 +53,7 @@ for i in I:
     mdl.addConstraint(x[i, 'flag', 'India'] == x[i, 'beverage', 'tea'], name=f'R5_{i}')
 # R6
 for i in I:  # using the get function because x[i-1, '*', '*'] is not defined for i=1
-    mdl.addConstraint(x[i, 'color', 'green'] <= x.get((i-1, 'color', 'ivory'), 0), name=f'R6_{i}')
+    mdl.addConstraint(x[i, 'color', 'green'] == x.get((i-1, 'color', 'ivory'), 0), name=f'R6_{i}')
 # R7
 for i in I:
     mdl.addConstraint(x[i, 'pet', 'cat'] == x[i, 'hobby', 'chess'], name=f'R7_{i}')
