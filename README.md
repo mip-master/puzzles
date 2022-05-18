@@ -1,3 +1,5 @@
+**OBS: We are migrating all the content of Mip Master to [Mip Wise](https://www.mipwise.com/).**
+
 # Mip Master Fun Puzzles
 This is a collection of fun puzzles proposed to the Mip Master
 community to be solved using MIP.
